@@ -1,79 +1,177 @@
-// import { useRef } from "react";
+// import { useRef, useState } from "react";
 // import { gsap } from "gsap";
 // import { ScrollTrigger } from "gsap/ScrollTrigger";
 // import { useGSAP } from "@gsap/react";
-// import { FaArrowRight } from "react-icons/fa";
+// import { FaArrowRight, FaTimes } from "react-icons/fa";
 // import TitleHeader from "../components/TitleHeader";
 
 // gsap.registerPlugin(ScrollTrigger);
 
 // const AppShowcase = () => {
 //   const sectionRef = useRef(null);
-//   const rydeRef = useRef(null);
-//   const libraryRef = useRef(null);
-//   const ycDirectoryRef = useRef(null);
-//   const project4Ref = useRef(null);
-//   const project5Ref = useRef(null);
-//   const project6Ref = useRef(null);
+//   const refs = {
+//     rydeRef: useRef(null),
+//     libraryRef: useRef(null),
+//     ycDirectoryRef: useRef(null),
+//     project4Ref: useRef(null),
+//     project5Ref: useRef(null),
+//     project6Ref: useRef(null),
+//   };
+//   const [isModalOpen, setIsModalOpen] = useState(false);
+//   const [currentVideo, setCurrentVideo] = useState("");
 
 //   useGSAP(() => {
 //     // Animation for the main section
 //     gsap.fromTo(
 //       sectionRef.current,
 //       { opacity: 0 },
-//       { opacity: 1, duration: 1.5 }
+//       { opacity: 1, duration: 1.5, ease: "power2.out" }
 //     );
 
 //     // Animations for each app showcase
-//     const cards = [
-//       rydeRef.current,
-//       libraryRef.current,
-//       ycDirectoryRef.current,
-//       project4Ref.current,
-//       project5Ref.current,
-//       project6Ref.current,
-//     ];
-
-//     cards.forEach((card, index) => {
-//       gsap.fromTo(
-//         card,
-//         {
-//           y: 50,
-//           opacity: 0,
-//         },
-//         {
-//           y: 0,
-//           opacity: 1,
-//           duration: 1,
-//           delay: 0.3 * (index + 1),
-//           scrollTrigger: {
-//             trigger: card,
-//             start: "top bottom-=100",
-//           },
-//         }
-//       );
+//     Object.values(refs).forEach((card, index) => {
+//       if (card.current) {
+//         gsap.fromTo(
+//           card.current,
+//           { y: 50, opacity: 0 },
+//           {
+//             y: 0,
+//             opacity: 1,
+//             duration: 1,
+//             delay: 0.3 * (index + 1),
+//             ease: "power2.out",
+//             scrollTrigger: {
+//               trigger: card.current,
+//               start: "top bottom-=100",
+//               toggleActions: "play none none reverse",
+//             },
+//           }
+//         );
+//       }
 //     });
 //   }, []);
 
+//   // Project-specific data with corrected video paths
+//   const projects = [
+//     {
+//       ref: refs.rydeRef,
+//       title: "oladoc - Doctors Appointment Booking System",
+//       videoUrl: "/images/Doctors Appointment.mp4",
+//       githubUrl: "https://github.com/Shahid1275/appointment-system",
+//       image: "/images/project1.png",
+//       alt: "oladoc App Interface",
+//       bgColor: "bg-white",
+//       tech: [
+//         "React.js",
+//         "Node.js",
+//         "TailwindCSS",
+//         "MongoDB",
+//         "Stripe.js",
+//         "Redux Toolkit",
+//       ],
+//     },
+//     {
+//       ref: refs.libraryRef,
+//       title: "Node-Farm - Natural ingredients API",
+//       videoUrl: "/images/node-farm.mp4",
+//       githubUrl: "https://github.com/Shahid1275/node-farm-api",
+//       image: "/images/project6.png",
+//       alt: "Node-Farm API",
+//       bgColor: "bg-[#FFEFDB]",
+//       tech: ["Node.js", "Express.js", "MongoDB", "REST API"],
+//     },
+//     {
+//       ref: refs.ycDirectoryRef,
+//       title: "Secure Auth - Real Auth System",
+//       videoUrl: "/images/Real-Auth.mp4",
+//       githubUrl: "https://github.com/Shahid1275/real-auth-system",
+//       image: "/images/project3.png",
+//       alt: "Secure Auth App",
+//       bgColor: "bg-[#FFE7EB]",
+//       tech: [
+//         "React.js",
+//         "MongoDB",
+//         "TailwindCSS",
+//         "JWT Auth",
+//         "Nodemailer",
+//         "Context API",
+//       ],
+//     },
+//     {
+//       ref: refs.project4Ref,
+//       title: "Organic Shopper - Natural Ecommerce site",
+//       videoUrl: "/images/Natural _ Ecommerce.mp4",
+//       githubUrl: "https://github.com/Shahid1275/organic-shopper",
+//       image: "/images/project4.png",
+//       alt: "Organic Shopper Interface",
+//       bgColor: "bg-white",
+//       tech: [
+//         "React.js",
+//         "Node.js",
+//         "TailwindCSS",
+//         "MongoDB",
+//         "JWT Auth",
+//         "Redux Toolkit",
+//       ],
+//     },
+//     {
+//       ref: refs.project5Ref,
+//       title: "AttendEase - Management System",
+//       videoUrl: "/images/AttendEase.mp4",
+//       githubUrl: "https://github.com/Shahid1275/Attend-Ease",
+//       image: "/images/project5.png",
+//       alt: "AttendEase Platform",
+//       bgColor: "bg-[#FFEFDB]",
+//       tech: ["React.js", "Next.js", "Material-UI", "SQL", "Laravel APIs"],
+//     },
+//     {
+//       ref: refs.project6Ref,
+//       title: "Tiny URL - URL Shortener System",
+//       videoUrl: "/images/url shortner.mp4",
+//       githubUrl: "https://github.com/Shahid1275/mern-url-shortener",
+//       image: "/images/project2.png",
+//       alt: "Tiny URL App",
+//       bgColor: "bg-[#FFE7EB]",
+//       tech: [
+//         "React.js",
+//         "Node.js",
+//         "Material-UI",
+//         "PostgreSQL",
+//         "JWT Auth",
+//         "Redux Toolkit",
+//       ],
+//     },
+//   ];
+
+//   const openModal = (videoUrl) => {
+//     if (!videoUrl) {
+//       console.error("No video URL provided");
+//       return;
+//     }
+//     setCurrentVideo(videoUrl);
+//     setIsModalOpen(true);
+//   };
+
+//   const closeModal = () => {
+//     setIsModalOpen(false);
+//     setCurrentVideo("");
+//   };
+
 //   const openLink = (url) => {
-//     // Generate a random video URL from a predefined list
-//     const videoUrls = [
-//       "Natural _ Ecommerce.mp4", // Placeholder 1
-//       "Real-Auth.mp4", // Placeholder 2
-//       "node-farm.mp4",
-//       "Doctors Appointment.mp4",
-//       "AttendEase.mp4",
-//       "url shortner.mp4", // Placeholder 3
-//     ];
-//     const randomVideoUrl =
-//       videoUrls[Math.floor(Math.random() * videoUrls.length)];
-//     window.open(url || randomVideoUrl, "_blank", "noopener,noreferrer");
+//     if (!url) {
+//       console.error("No URL provided");
+//       return;
+//     }
+//     try {
+//       window.open(url, "_blank", "noopener,noreferrer");
+//     } catch (error) {
+//       console.error("Error opening link:", error);
+//     }
 //   };
 
 //   return (
 //     <div id="work" ref={sectionRef} className="app-showcase py-20">
 //       <div className="w-full max-w-7xl mx-auto px-6">
-//         {/* Title Header */}
 //         <div className="text-center mb-16">
 //           <TitleHeader
 //             title="Featured Projects"
@@ -82,327 +180,97 @@
 //         </div>
 
 //         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-//           {/* Project 1 */}
-//           <div
-//             ref={rydeRef}
-//             className="project bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col"
-//           >
-//             <div className="image-wrapper flex-1 flex items-center p-2 bg-white">
-//               <img
-//                 src="/images/project1.png"
-//                 alt="oladoc App Interface"
-//                 className="w-full h-auto max-h-64 object-contain mx-auto"
-//               />
-//             </div>
-//             <div className="p-6">
-//               <h2 className="text-2xl font-bold text-gray-900">
-//                 oladoc - Doctors Appointment Booking System
-//               </h2>
-//               <div className="flex flex-wrap gap-2 mt-3">
-//                 {[
-//                   "React.js",
-//                   "Node.js",
-//                   "TailwindCSS",
-//                   "MongoDB",
-//                   "Stripe.js",
-//                   "Redux Toolkit",
-//                 ].map((tech) => (
-//                   <span
-//                     key={tech}
-//                     className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm font-medium"
+//           {projects.map((project, index) => (
+//             <div
+//               key={index}
+//               ref={project.ref}
+//               className="project bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col"
+//             >
+//               <div
+//                 className={`image-wrapper flex-1 flex items-center p-2 ${project.bgColor}`}
+//               >
+//                 <img
+//                   src={project.image}
+//                   alt={project.alt}
+//                   className="w-full h-auto max-h-64 object-contain mx-auto"
+//                   loading="lazy"
+//                 />
+//               </div>
+//               <div className="p-6">
+//                 <h2 className="text-2xl font-bold text-gray-900">
+//                   {project.title}
+//                 </h2>
+//                 <div className="flex flex-wrap gap-2 mt-3">
+//                   {project.tech.map((tech) => (
+//                     <span
+//                       key={tech}
+//                       className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm font-medium"
+//                     >
+//                       {tech}
+//                     </span>
+//                   ))}
+//                 </div>
+//                 <div className="flex justify-between mt-6">
+//                   <button
+//                     onClick={() => openModal(project.videoUrl)}
+//                     className="flex items-center gap-2 px-4 py-2 bg-teal-600 text-white rounded-full hover:bg-teal-700 transition-all duration-300 font-medium"
+//                     aria-label={`View demo video for ${project.title}`}
 //                   >
-//                     {tech}
-//                   </span>
-//                 ))}
-//               </div>
-//               <div className="flex justify-between mt-6">
-//                 <button
-//                   onClick={() => openLink()}
-//                   className="flex items-center gap-2 px-4 py-2 bg-teal-600 text-white rounded-full hover:bg-teal-700 transition-all duration-300 font-medium"
-//                 >
-//                   <span>view Demo</span>
-//                 </button>
-//                 <button
-//                   onClick={() =>
-//                     openLink("https://github.com/Shahid1275/appointment-system")
-//                   }
-//                   className="flex items-center gap-2 text-teal-600 hover:text-teal-500 transition-all duration-300 font-medium"
-//                 >
-//                   <span>View Code</span>
-//                   <FaArrowRight className="text-sm" />
-//                 </button>
+//                     <span>View Demo</span>
+//                   </button>
+//                   <button
+//                     onClick={() => openLink(project.githubUrl)}
+//                     className="flex items-center gap-2 text-teal-600 hover:text-teal-500 transition-all duration-300 font-medium"
+//                     aria-label={`View source code for ${project.title}`}
+//                   >
+//                     <span>View Code</span>
+//                     <FaArrowRight className="text-sm" />
+//                   </button>
+//                 </div>
 //               </div>
 //             </div>
-//           </div>
+//           ))}
+//         </div>
+//       </div>
 
-//           {/* Project 2 */}
-//           <div
-//             ref={libraryRef}
-//             className="project bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col"
-//           >
-//             <div className="image-wrapper flex-1 flex items-center p-2 bg-[#FFEFDB]">
-//               <img
-//                 src="/images/project6.png"
-//                 alt="Tiny URL Platform"
-//                 className="w-full h-auto max-h-64 object-contain mx-auto"
-//               />
-//             </div>
-//             <div className="p-6">
-//               <h2 className="text-2xl font-bold text-gray-900">
-//                 Node-Farm - Natural ingredients API
-//               </h2>
-//               <div className="flex flex-wrap gap-2 mt-3">
-//                 {["Node.js", "exprss.js", "mongodb", "REST API"].map((tech) => (
-//                   <span
-//                     key={tech}
-//                     className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm font-medium"
-//                   >
-//                     {tech}
-//                   </span>
-//                 ))}
-//               </div>
-//               <div className="flex justify-between mt-6">
-//                 <button
-//                   onClick={() => openLink()}
-//                   className="flex items-center gap-2 px-4 py-2 bg-teal-600 text-white rounded-full hover:bg-teal-700 transition-all duration-300 font-medium"
-//                 >
-//                   <span>view Demo</span>
-//                 </button>
-//                 <button
-//                   onClick={() =>
-//                     openLink("https://github.com/Shahid1275/node-farm-api")
-//                   }
-//                   className="flex items-center gap-2 text-teal-600 hover:text-teal-500 transition-all duration-300 font-medium"
-//                 >
-//                   <span>View Code</span>
-//                   <FaArrowRight className="text-sm" />
-//                 </button>
-//               </div>
-//             </div>
-//           </div>
-
-//           {/* Project 3 */}
-//           <div
-//             ref={ycDirectoryRef}
-//             className="project bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col"
-//           >
-//             <div className="image-wrapper flex-1 flex items-center p-2 bg-[#FFE7EB]">
-//               <img
-//                 src="/images/project3.png"
-//                 alt="Secure Auth App"
-//                 className="w-full h-auto max-h-64 object-contain mx-auto"
-//               />
-//             </div>
-//             <div className="p-6">
-//               <h2 className="text-2xl font-bold text-gray-900">
-//                 Secure Auth - Real Auth System
-//               </h2>
-//               <div className="flex flex-wrap gap-2 mt-3">
-//                 {[
-//                   "React.js",
-//                   "MongoDB",
-//                   "TailwindCSS",
-//                   "JWT Auth",
-//                   "Nodemailer",
-//                   "Context API",
-//                 ].map((tech) => (
-//                   <span
-//                     key={tech}
-//                     className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm font-medium"
-//                   >
-//                     {tech}
-//                   </span>
-//                 ))}
-//               </div>
-//               <div className="flex justify-between mt-6">
-//                 <button
-//                   onClick={() => openLink()}
-//                   className="flex items-center gap-2 px-4 py-2 bg-teal-600 text-white rounded-full hover:bg-teal-700 transition-all duration-300 font-medium"
-//                 >
-//                   <span>view Demo</span>
-//                 </button>
-//                 <button
-//                   onClick={() =>
-//                     openLink("https://github.com/Shahid1275/real-auth-system")
-//                   }
-//                   className="flex items-center gap-2 text-teal-600 hover:text-teal-500 transition-all duration-300 font-medium"
-//                 >
-//                   <span>View Code</span>
-//                   <FaArrowRight className="text-sm" />
-//                 </button>
-//               </div>
-//             </div>
-//           </div>
-
-//           {/* Project 4 */}
-//           <div
-//             ref={project4Ref}
-//             className="project bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col"
-//           >
-//             <div className="image-wrapper flex-1 flex items-center p-2 bg-white">
-//               <img
-//                 src="/images/project4.png"
-//                 alt="Taskify App Interface"
-//                 className="w-full h-auto max-h-64 object-contain mx-auto"
-//               />
-//             </div>
-//             <div className="p-6">
-//               <h2 className="text-2xl font-bold text-gray-900">
-//                 Organic Shopper - Natural Ecommerce site
-//               </h2>
-//               <div className="flex flex-wrap gap-2 mt-3">
-//                 {[
-//                   "React.js",
-//                   "Node.js",
-//                   "TailwindCSS",
-//                   "mongodb",
-//                   "jwt-auth",
-//                   "Redux Toolkit",
-//                 ].map((tech) => (
-//                   <span
-//                     key={tech}
-//                     className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm font-medium"
-//                   >
-//                     {tech}
-//                   </span>
-//                 ))}
-//               </div>
-//               <div className="flex justify-between mt-6">
-//                 <button
-//                   onClick={() => openLink()}
-//                   className="flex items-center gap-2 px-4 py-2 bg-teal-600 text-white rounded-full hover:bg-teal-700 transition-all duration-300 font-medium"
-//                 >
-//                   <span>view Demo</span>
-//                 </button>
-//                 <button
-//                   onClick={() =>
-//                     openLink("https://github.com/Shahid1275/organic-shopper")
-//                   }
-//                   className="flex items-center gap-2 text-teal-600 hover:text-teal-500 transition-all duration-300 font-medium"
-//                 >
-//                   <span>View Code</span>
-//                   <FaArrowRight className="text-sm" />
-//                 </button>
-//               </div>
-//             </div>
-//           </div>
-
-//           {/* Project 5 */}
-//           <div
-//             ref={project5Ref}
-//             className="project bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col"
-//           >
-//             <div className="image-wrapper flex-1 flex items-center p-2 bg-[#FFEFDB]">
-//               <img
-//                 src="/images/project5.png"
-//                 alt="ShopEase Platform"
-//                 className="w-full h-auto max-h-64 object-contain mx-auto"
-//               />
-//             </div>
-//             <div className="p-6">
-//               <h2 className="text-2xl font-bold text-gray-900">
-//                 AttendEase - management system
-//               </h2>
-//               <div className="flex flex-wrap gap-2 mt-3">
-//                 {[
-//                   "React.js",
-//                   "Next.js.js",
-//                   "Material-UI",
-//                   "SQL",
-//                   "Laravel Api's",
-//                 ].map((tech) => (
-//                   <span
-//                     key={tech}
-//                     className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm font-medium"
-//                   >
-//                     {tech}
-//                   </span>
-//                 ))}
-//               </div>
-//               <div className="flex justify-between mt-6">
-//                 <button
-//                   onClick={() => openLink()}
-//                   className="flex items-center gap-2 px-4 py-2 bg-teal-600 text-white rounded-full hover:bg-teal-700 transition-all duration-300 font-medium"
-//                 >
-//                   <span>view Demo</span>
-//                 </button>
-//                 <button
-//                   onClick={() =>
-//                     openLink("https://github.com/Shahid1275/Attend-Ease")
-//                   }
-//                   className="flex items-center gap-2 text-teal-600 hover:text-teal-500 transition-all duration-300 font-medium"
-//                 >
-//                   <span>View Code</span>
-//                   <FaArrowRight className="text-sm" />
-//                 </button>
-//               </div>
-//             </div>
-//           </div>
-
-//           {/* Project 6 */}
-//           <div
-//             ref={project6Ref}
-//             className="project bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col"
-//           >
-//             <div className="image-wrapper flex-1 flex items-center p-2 bg-[#FFE7EB]">
-//               <img
-//                 src="/images/project2.png"
-//                 alt="ChatSphere App"
-//                 className="w-full h-auto max-h-64 object-contain mx-auto"
-//               />
-//             </div>
-//             <div className="p-6">
-//               <h2 className="text-2xl font-bold text-gray-900">
-//                 Tiny URL - URL Shortener System
-//               </h2>
-//               <div className="flex flex-wrap gap-2 mt-3">
-//                 {[
-//                   "React.js",
-//                   "Node.js",
-//                   "Material-UI",
-//                   "PostgreSQL",
-//                   "JWT Auth",
-//                   "Redux Toolkit",
-//                 ].map((tech) => (
-//                   <span
-//                     key={tech}
-//                     className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm font-medium"
-//                   >
-//                     {tech}
-//                   </span>
-//                 ))}
-//               </div>
-//               <div className="flex justify-between mt-6">
-//                 <button
-//                   onClick={() => openLink()}
-//                   className="flex items-center gap-2 px-4 py-2 bg-teal-600 text-white rounded-full hover:bg-teal-700 transition-all duration-300 font-medium"
-//                 >
-//                   <span>view Demo</span>
-//                 </button>
-//                 <button
-//                   onClick={() =>
-//                     openLink("https://github.com/Shahid1275/mern-url-shortener")
-//                   }
-//                   className="flex items-center gap-2 text-teal-600 hover:text-teal-500 transition-all duration-300 font-medium"
-//                 >
-//                   <span>View Code</span>
-//                   <FaArrowRight className="text-sm" />
-//                 </button>
-//               </div>
+//       {/* Modal for Video Player */}
+//       {isModalOpen && (
+//         <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4">
+//           <div className="relative bg-white rounded-lg p-6 w-full max-w-4xl">
+//             <button
+//               onClick={closeModal}
+//               className="absolute top-4 right-4 text-gray-600 hover:text-gray-800 z-10"
+//               aria-label="Close video modal"
+//             >
+//               <FaTimes className="text-2xl" />
+//             </button>
+//             <div className="w-full h-full aspect-video">
+//               <video
+//                 src={currentVideo}
+//                 controls
+//                 autoPlay
+//                 className="w-full h-full rounded-lg"
+//                 onError={(e) => {
+//                   console.error("Video error:", e);
+//                   alert("Failed to load video. Please check the file path.");
+//                 }}
+//               >
+//                 Your browser does not support the video tag.
+//               </video>
 //             </div>
 //           </div>
 //         </div>
-//       </div>
+//       )}
 //     </div>
 //   );
 // };
 
 // export default AppShowcase;
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-import { FaArrowRight, FaTimes } from "react-icons/fa";
+import { FaArrowRight } from "react-icons/fa";
 import TitleHeader from "../components/TitleHeader";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -417,8 +285,6 @@ const AppShowcase = () => {
     project5Ref: useRef(null),
     project6Ref: useRef(null),
   };
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [currentVideo, setCurrentVideo] = useState("");
 
   useGSAP(() => {
     // Animation for the main section
@@ -451,12 +317,11 @@ const AppShowcase = () => {
     });
   }, []);
 
-  // Project-specific data with corrected video paths
+  // Project-specific data
   const projects = [
     {
       ref: refs.rydeRef,
       title: "oladoc - Doctors Appointment Booking System",
-      videoUrl: "/images/Doctors Appointment.mp4",
       githubUrl: "https://github.com/Shahid1275/appointment-system",
       image: "/images/project1.png",
       alt: "oladoc App Interface",
@@ -473,7 +338,6 @@ const AppShowcase = () => {
     {
       ref: refs.libraryRef,
       title: "Node-Farm - Natural ingredients API",
-      videoUrl: "/images/node-farm.mp4",
       githubUrl: "https://github.com/Shahid1275/node-farm-api",
       image: "/images/project6.png",
       alt: "Node-Farm API",
@@ -483,7 +347,6 @@ const AppShowcase = () => {
     {
       ref: refs.ycDirectoryRef,
       title: "Secure Auth - Real Auth System",
-      videoUrl: "/images/Real-Auth.mp4",
       githubUrl: "https://github.com/Shahid1275/real-auth-system",
       image: "/images/project3.png",
       alt: "Secure Auth App",
@@ -500,7 +363,6 @@ const AppShowcase = () => {
     {
       ref: refs.project4Ref,
       title: "Organic Shopper - Natural Ecommerce site",
-      videoUrl: "/images/Natural _ Ecommerce.mp4",
       githubUrl: "https://github.com/Shahid1275/organic-shopper",
       image: "/images/project4.png",
       alt: "Organic Shopper Interface",
@@ -517,7 +379,6 @@ const AppShowcase = () => {
     {
       ref: refs.project5Ref,
       title: "AttendEase - Management System",
-      videoUrl: "/images/AttendEase.mp4",
       githubUrl: "https://github.com/Shahid1275/Attend-Ease",
       image: "/images/project5.png",
       alt: "AttendEase Platform",
@@ -527,7 +388,6 @@ const AppShowcase = () => {
     {
       ref: refs.project6Ref,
       title: "Tiny URL - URL Shortener System",
-      videoUrl: "/images/url shortner.mp4",
       githubUrl: "https://github.com/Shahid1275/mern-url-shortener",
       image: "/images/project2.png",
       alt: "Tiny URL App",
@@ -542,20 +402,6 @@ const AppShowcase = () => {
       ],
     },
   ];
-
-  const openModal = (videoUrl) => {
-    if (!videoUrl) {
-      console.error("No video URL provided");
-      return;
-    }
-    setCurrentVideo(videoUrl);
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-    setCurrentVideo("");
-  };
 
   const openLink = (url) => {
     if (!url) {
@@ -610,14 +456,7 @@ const AppShowcase = () => {
                     </span>
                   ))}
                 </div>
-                <div className="flex justify-between mt-6">
-                  <button
-                    onClick={() => openModal(project.videoUrl)}
-                    className="flex items-center gap-2 px-4 py-2 bg-teal-600 text-white rounded-full hover:bg-teal-700 transition-all duration-300 font-medium"
-                    aria-label={`View demo video for ${project.title}`}
-                  >
-                    <span>View Demo</span>
-                  </button>
+                <div className="flex justify-start mt-6">
                   <button
                     onClick={() => openLink(project.githubUrl)}
                     className="flex items-center gap-2 text-teal-600 hover:text-teal-500 transition-all duration-300 font-medium"
@@ -632,35 +471,6 @@ const AppShowcase = () => {
           ))}
         </div>
       </div>
-
-      {/* Modal for Video Player */}
-      {isModalOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4">
-          <div className="relative bg-white rounded-lg p-6 w-full max-w-4xl">
-            <button
-              onClick={closeModal}
-              className="absolute top-4 right-4 text-gray-600 hover:text-gray-800 z-10"
-              aria-label="Close video modal"
-            >
-              <FaTimes className="text-2xl" />
-            </button>
-            <div className="w-full h-full aspect-video">
-              <video
-                src={currentVideo}
-                controls
-                autoPlay
-                className="w-full h-full rounded-lg"
-                onError={(e) => {
-                  console.error("Video error:", e);
-                  alert("Failed to load video. Please check the file path.");
-                }}
-              >
-                Your browser does not support the video tag.
-              </video>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 };
