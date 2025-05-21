@@ -74,7 +74,7 @@ const AppShowcase = () => {
       image: "/images/project6.png",
       alt: "Node-Farm API",
       bgColor: "bg-[#FFEFDB]",
-      tech: ["Node.js", "Express.js", "MongoDB", "REST API"],
+      tech: ["Node.js", "Express.js", "REST API"],
     },
     {
       ref: refs.ycDirectoryRef,
@@ -115,7 +115,7 @@ const AppShowcase = () => {
       image: "/images/project5.png",
       alt: "AttendEase Platform",
       bgColor: "bg-[#FFEFDB]",
-      tech: ["React.js", "Next.js", "Material-UI", "SQL", "Laravel APIs"],
+      tech: ["React.js", "Next.js", "Material-UI", "Laravel APIs"],
     },
     {
       ref: refs.project6Ref,
@@ -124,14 +124,7 @@ const AppShowcase = () => {
       image: "/images/project2.png",
       alt: "Tiny URL App",
       bgColor: "bg-[#FFE7EB]",
-      tech: [
-        "React.js",
-        "Node.js",
-        "Material-UI",
-        "PostgreSQL",
-        "JWT Auth",
-        "Redux Toolkit",
-      ],
+      tech: ["React.js", "Node.js", "Material-UI", "PostgreSQL", "JWT Auth"],
     },
   ];
 
@@ -192,9 +185,9 @@ const AppShowcase = () => {
                   <button
                     onClick={() => openLink(project.githubUrl)}
                     className="flex items-center gap-2 text-teal-600 hover:text-teal-500 transition-all duration-300 font-medium"
-                    aria-label={`View source code for ${project.title}`}
+                    aria-label={`visit source code for ${project.title}`}
                   >
-                    <span>View Code</span>
+                    <span>visit Code</span>
                     <FaArrowRight className="text-sm" />
                   </button>
                 </div>
