@@ -187,7 +187,7 @@ const AppShowcase = () => {
                     className="flex items-center gap-2 text-teal-600 hover:text-teal-500 transition-all duration-300 font-medium"
                     aria-label={`visit source code for ${project.title}`}
                   >
-                    <span>visit Code</span>
+                    <span>Visit Code</span>
                     <FaArrowRight className="text-sm" />
                   </button>
                 </div>

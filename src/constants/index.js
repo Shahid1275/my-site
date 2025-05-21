@@ -99,7 +99,7 @@ const expCards = [
   {
     imgPath: "/images/internship.png",
     title: "Full Stack Developer Intern",
-    institution: "Ultra Codes",
+    institution: "Ultra Codes Pvt Ltd",
     date: "July 2024 - September 2024",
     responsibilities: [
       "Assisted in developing and maintaining company websites and applications",
