@@ -94,7 +94,7 @@ const Hero = () => {
         <figure className="w-full lg:w-1/2 order-1 lg:order-2 mt-8 lg:mt-0">
           <div className="relative flex justify-center items-center">
             <img
-              src="/images/developer.png"
+              src="/images/developer.jpg"
               alt="Professional developer working at a modern workspace"
               className="hero-image w-full max-w-lg lg:max-w-xl mb-4 h-auto max-h-[550px] object-cover rounded-2xl shadow-2xl border border-white/10 transform transition-transform duration-500 hover:scale-105"
               onError={() => console.error("Failed to load developer image")}
