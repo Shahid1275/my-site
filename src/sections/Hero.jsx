@@ -62,7 +62,7 @@ const Hero = () => {
                       <img
                         src={word.imgPath}
                         alt={word.text}
-                        className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 p-1 rounded-full bg-white/10 border border-white/20"
+                        className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 p-1 rounded-full bg-white/10 border border-white/20 brightness-0 invert"
                       />
                       <span className="text-white">{word.text}</span>
                     </span>
@@ -94,9 +94,9 @@ const Hero = () => {
         <figure className="w-full lg:w-1/2 order-1 lg:order-2 mt-8 lg:mt-0">
           <div className="relative flex justify-center items-center">
             <img
-              src="/images/developer.jpg"
+              src="/images/developer.svg"
               alt="Professional developer working at a modern workspace"
-              className="hero-image w-full max-w-lg lg:max-w-xl mb-4 h-auto max-h-[550px] object-cover rounded-2xl shadow-2xl border border-white/10 transform transition-transform duration-500 hover:scale-105"
+              className="hero-image w-full max-w-lg lg:max-w-xl mb-4 h-auto max-h-[550px] object-cover rounded-2xl mt-10 border-white/10 transform transition-transform duration-500 hover:scale-105"
               onError={() => console.error("Failed to load developer image")}
             />
             {/* Subtle overlay for depth */}

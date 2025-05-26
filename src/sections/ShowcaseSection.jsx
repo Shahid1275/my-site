@@ -69,12 +69,20 @@ const AppShowcase = () => {
     },
     {
       ref: refs.libraryRef,
-      title: "Node-Farm - Natural ingredients API",
-      githubUrl: "https://github.com/Shahid1275/node-farm-api",
+      title: "Hotel Booking management system",
+      githubUrl: "https://github.com/Shahid1275/Hotel-booking-system",
       image: "/images/project6.png",
       alt: "Node-Farm API",
       bgColor: "bg-[#FFEFDB]",
-      tech: ["Node.js", "Express.js", "REST API"],
+      tech: [
+        "React",
+        "Node.js",
+        "Express.js",
+        "REST API",
+        "Clerk",
+        "stripe",
+        "mongodb",
+      ],
     },
     {
       ref: refs.ycDirectoryRef,
